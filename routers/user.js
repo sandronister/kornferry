@@ -2,8 +2,11 @@ const { check, validationResult } = require('express-validator')
 const sha1 = require('sha1')
 
 module.exports = app => {
+  const auth = require('../services/auth')(app)
+
   app.post(
     '/user',
+    auth.authenticate(),
     [
       check('nome')
         .isLength(5)
@@ -41,30 +44,27 @@ module.exports = app => {
     }
   )
 
-  app.post(
-    '/login',
-    (req, res, next) => {
-      const errors = validationResult(req)
+  app.post('/login', (req, res, next) => {
+    const errors = validationResult(req)
 
-      if (!errors.isEmpty()) {
-        return res.status(422).json({ errors: errors.array() })
-      }
-
-      let user = req.body
-      user.senha = sha1(user.senha)
-
-      const db = app.persistence.connection
-      const userDAO = new app.persistence.userDAO(db)
-      const tokenSVC = new app.services.token(app)
-
-      if (!userDAO.login(user)) {
-        res.status(403).send({ message: 'Login inválido' })
-        return
-      }
-
-      const token = tokenSVC.create(user)
-
-      res.status(200).send({ token })
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() })
     }
-  )
+
+    let user = req.body
+    user.senha = sha1(user.senha)
+
+    const db = app.persistence.connection
+    const userDAO = new app.persistence.userDAO(db)
+    const tokenSVC = new app.services.token(app)
+
+    if (!userDAO.login(user)) {
+      res.status(403).send({ message: 'Login inválido' })
+      return
+    }
+
+    const token = tokenSVC.create(user)
+
+    res.status(200).send({ token })
+  })
 }

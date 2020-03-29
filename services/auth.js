@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken')
 
 module.exports = function (app) {
   passport.use(new BearerStrategy(async (token, next) => {
-
     try {
       jwt.verify(token, cfg.jwtSecret)
 
@@ -15,16 +14,15 @@ module.exports = function (app) {
         throw '401'
       }
 
-      const conn = app.persistence.connection
+      const db = app.persistence.connection
+      const userDAO = new app.persistence.userDAO(db)
 
-      const userDAO = new app.persistence.usersDAO(conn)
       let user = await userDAO.getUser(payload.user)
-
 
       if (!user.length) {
         throw '401'
       }
-      return next(null, { ...user[0], id: user[0].id_usuario })
+      return next(null, { ...user[0], id: user[0].id })
     } catch (error) {
       console.error(error)
       return next(null, false)

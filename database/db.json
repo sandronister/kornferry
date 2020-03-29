@@ -1,5 +1,9 @@
 {
-    "exceptions":[{"user":"15350946056"}],
+    "exceptions": [
+        {
+            "user": "15350946056"
+        }
+    ],
     "users": [
         {
             "email": "sandronister@gmail.com",
@@ -7,6 +11,13 @@
             "nome": "julio cesar carriel sandroni",
             "senha": "b95c8cffb06316736689a1fce5b8a1cb41b01634",
             "id": 1
+        },
+        {
+            "email": "jsandronb@ol.com.br",
+            "cpf": "9201241412412",
+            "nome": "jack sparrow",
+            "senha": "7c222fb2927d828af22f592134e8932480637c0d",
+            "id": 2
         }
     ]
 }

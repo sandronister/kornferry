@@ -44,6 +44,20 @@ userDAO.prototype.login = function(user) {
   return result.length > 0
 }
 
+userDAO.prototype.getUser = function(user) {
+  const listUsers = this.db.get('users')
+
+  if (!listUsers) {
+    return []
+  }
+
+  let result = listUsers.filter(item => {
+    return item.email == user.email && item.senha == user.senha
+  })
+
+  return result
+}
+
 userDAO.prototype.getExceptions = function() {
   let listExcept = this.db.get('exceptions')
 
