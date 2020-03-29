@@ -1,8 +1,10 @@
 {
     "users": [
         {
-            "nome": null,
             "email": "sandronister@gmail.com",
+            "cpf": "21490153829",
+            "nome": "julio cesar carriel sandroni",
+            "senha": "b95c8cffb06316736689a1fce5b8a1cb41b01634",
             "id": 1
         }
     ]
