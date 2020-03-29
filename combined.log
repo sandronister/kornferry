@@ -1,4 +1,0 @@
-{"message":"::1 - - [28/Mar/2020:22:21:37 +0000] \"POST /user HTTP/1.1\" - -\n","level":"info","service":"user-service"}
-{"message":"::1 - - [28/Mar/2020:22:25:22 +0000] \"POST /user HTTP/1.1\" - -\n","level":"info","service":"user-service"}
-{"message":"::1 - - [28/Mar/2020:22:26:00 +0000] \"POST /user HTTP/1.1\" 200 2\n","level":"info","service":"user-service"}
-{"message":"::1 - - [28/Mar/2020:22:26:15 +0000] \"POST /user HTTP/1.1\" 200 2\n","level":"info","service":"user-service"}
