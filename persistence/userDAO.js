@@ -69,6 +69,34 @@ userDAO.prototype.getExceptions = function() {
   return listExcept
 }
 
+userDAO.prototype.hasCPF = function(cpf) {
+  let users = this.db.get('users')
+
+  let result = users.filter(item => {
+    return item.cpf == cpf
+  })
+
+  return result.length > 0
+}
+
+userDAO.prototype.setStatusOrder = function(order) {
+  let exceptions = this.getExceptions()
+
+  let result = exceptions.filter(item => {
+    return item.user == order.cpf
+  })
+
+  order.status = result.length > 0 ? 'Aprovado' : 'Em validação'
+
+  if (order.status == 'Aprovado') {
+    return
+  }
+
+  if (!this.hasCPF(order.cpf)) {
+    order.status = 'invalido'
+  }
+}
+
 module.exports = function() {
   return userDAO
 }
