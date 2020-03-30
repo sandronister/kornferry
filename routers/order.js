@@ -42,6 +42,22 @@ module.exports = app => {
       }
 
       order.valor = order.valor.toFixed(2)
+
+      if (order.valor <= 1000.0) {
+        order.cashback = (order.valor * 0.1).toFixed(2)
+        order.percentual = '10%'
+      }
+
+      if (order.valor > 1000.0 && order.valor <= 1500.0) {
+        order.cashback = (order.valor * 0.15).toFixed(2)
+        order.percentual = '15%'
+      }
+
+      if (order.valor > 1500) {
+        order.cashback = (order.valor * 0.2).toFixed(2)
+        order.percentual = '20%'
+      }
+
       orderDAO.insert(order)
       res.status(200).send({ message: 'sucess' })
     }

@@ -22,28 +22,24 @@
     ],
     "orders": [
         {
-            "cpf": "21490153829",
+            "cpf": "15350946056",
             "codigo": 243413,
-            "valor": "203.30",
+            "valor": "1000.30",
             "data": "2020-04-01",
-            "status": "Em validação",
+            "status": "Aprovado",
+            "cashback": "150.04",
+            "percentual": "15%",
             "id": 1
-        },
-        {
-            "cpf": "21490153829",
-            "codigo": 243413,
-            "valor": "203.00",
-            "data": "2020-04-01",
-            "status": "Em validação",
-            "id": 2
         },
         {
             "cpf": "15350946056",
             "codigo": 243413,
-            "valor": "203.00",
+            "valor": "2500.30",
             "data": "2020-04-01",
             "status": "Aprovado",
-            "id": 3
+            "cashback": "500.06",
+            "percentual": "20%",
+            "id": 2
         }
     ]
 }
