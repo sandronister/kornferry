@@ -76,4 +76,10 @@ module.exports = app => {
     const orders = orderDAO.list(req.params)
     res.send(orders)
   })
+
+  app.get('/cashback/:cpf',async (req,res,next)=>{
+    const cashbackSVC = new app.services.cashback(app)
+    let result = await cashbackSVC.getValues(req.params.cpf)
+    res.send(result)
+  })
 }
