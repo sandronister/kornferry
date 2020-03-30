@@ -40,6 +40,16 @@
             "cashback": "500.06",
             "percentual": "20%",
             "id": 2
+        },
+        {
+            "cpf": "21490153829",
+            "codigo": 243413,
+            "valor": "100000.30",
+            "data": "2020-04-01",
+            "status": "Em validação",
+            "cashback": "20000.06",
+            "percentual": "20%",
+            "id": 3
         }
     ]
 }

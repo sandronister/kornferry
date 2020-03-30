@@ -62,4 +62,11 @@ module.exports = app => {
       res.status(200).send({ message: 'sucess' })
     }
   )
+
+  app.get('/order', auth.authenticate(), (req, res, next) => {
+    const db = app.persistence.connection
+    const orderDAO = new app.persistence.orderDAO(db)
+    const orders = orderDAO.list()
+    res.send(orders)
+  })
 }
