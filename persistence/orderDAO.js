@@ -16,9 +16,8 @@ orderDAO.prototype.insert = function(order) {
   this.db.set('orders', orders)
 }
 
-orderDAO.prototype.list = function(user) {
-  const orders = this.db.get('orders')
-  const list = orders.map(item => {
+orderDAO.prototype.select = function(orders){
+  return orders.map(item => {
     return {
       codigo: item.codigo,
       data: item.data,
@@ -26,11 +25,20 @@ orderDAO.prototype.list = function(user) {
       percentual: item.percentual
     }
   })
+}
+
+orderDAO.prototype.list = function(user) {
+  const orders = this.db.get('orders')
+
   if (!user) {
-    return list
+    return this.select(orders)
   }
 
-  return list.filter(item => item.cpf == user.cpf)
+  const list = orders.filter(item => {
+    return item.cpf == user.cpf
+  })
+
+  return this.select(list)
 }
 
 module.exports = function() {

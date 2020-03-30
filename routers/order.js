@@ -69,4 +69,11 @@ module.exports = app => {
     const orders = orderDAO.list()
     res.send(orders)
   })
+
+  app.get('/order/:cpf', auth.authenticate(), (req, res, next) => {
+    const db = app.persistence.connection
+    const orderDAO = new app.persistence.orderDAO(db)
+    const orders = orderDAO.list(req.params)
+    res.send(orders)
+  })
 }
